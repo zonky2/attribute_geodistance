@@ -1,0 +1,3 @@
+<?php if ($this->raw !== -1): ?>
+    <span class="text<?php echo $this->additional_class; ?>"><?php echo $this->raw; ?> KM</span>
+<?php endif; ?>
