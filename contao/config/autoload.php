@@ -8,7 +8,7 @@
  *
  * PHP version 5
  * @package    MetaModels
- * @subpackage AttributeGeorange
+ * @subpackage AttributeGeoDistance
  * @author     Stefan Heimes <stefan_heimes@hotmail.com>
  * @copyright  The MetaModels team.
  * @license    LGPL.
@@ -20,6 +20,6 @@
  */
 TemplateLoader::addFiles(
     array(
-        'mm_attr_georange' => 'system/modules/metamodelsattribute_georange/templates',
+        'mm_attr_geodistance' => 'system/modules/metamodelsattribute_geodistance/templates',
     )
 );

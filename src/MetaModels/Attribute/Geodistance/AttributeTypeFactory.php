@@ -8,14 +8,14 @@
  * PHP version 5
  *
  * @package    MetaModels
- * @subpackage AttributeGeoRange
+ * @subpackage AttributeGeoDistance
  * @author     Stefan Heimes <stefan_heimes@hotmail.com>
  * @copyright  The MetaModels team.
  * @license    LGPL.
  * @filesource
  */
 
-namespace MetaModels\Attribute\Georange;
+namespace MetaModels\Attribute\GeoDistance;
 
 use MetaModels\Attribute\AbstractAttributeTypeFactory;
 
@@ -31,8 +31,8 @@ class AttributeTypeFactory extends AbstractAttributeTypeFactory
     {
         parent::__construct();
 
-        $this->typeName  = 'georange';
-        $this->typeIcon  = 'system/modules/metamodelsattribute_georange/html/numeric.png';
-        $this->typeClass = 'MetaModels\Attribute\Georange\Georange';
+        $this->typeName  = 'geodistance';
+        $this->typeIcon  = 'system/modules/metamodelsattribute_geodistance/html/numeric.png';
+        $this->typeClass = 'MetaModels\Attribute\GeoDistance\GeoDistance';
     }
 }

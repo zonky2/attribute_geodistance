@@ -9,7 +9,7 @@
  * PHP version 5
  *
  * @package    MetaModels
- * @subpackage AttributeGeorange
+ * @subpackage AttributeGeoDistance
  * @author     Stefan Heimes <stefan_heimes@hotmail.com>
  * @copyright  The MetaModels team.
  * @license    LGPL.

@@ -1,14 +1,14 @@
 {
   "version": "2.0.0-alpha2",
-  "name": "metamodels/attribute_georange",
-  "description": "MetaModels attribute for geo range values",
+  "name": "metamodels/attribute_geodistance",
+  "description": "MetaModels attribute for geo distance values",
   "keywords": [
     "contao",
     "metamodels",
     "attribute",
     "numeric",
-	"geo",
-	"range"
+    "geo",
+    "distance"
   ],
   "type": "contao-module",
   "homepage": "",
@@ -54,7 +54,7 @@
   "extra": {
     "contao": {
       "sources": {
-        "contao": "system/modules/metamodelsattribute_georange"
+        "contao": "system/modules/metamodelsattribute_geodistance"
       }
     },
     "branch-alias": {

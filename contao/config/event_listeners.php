@@ -8,7 +8,7 @@
  * PHP version 5
  *
  * @package    MetaModels
- * @subpackage AttributeGeorange
+ * @subpackage AttributeGeoDistance
  * @author     Stefan Heimes <stefan_heimes@hotmail.com>
  * @copyright  The MetaModels team.
  * @license    LGPL.
@@ -16,8 +16,8 @@
  */
 
 use MetaModels\Attribute\Events\CreateAttributeFactoryEvent;
-use MetaModels\Attribute\Georange\AttributeTypeFactory;
-use MetaModels\DcGeneral\Events\Table\Attribute\Georange\Subscriber;
+use MetaModels\Attribute\GeoDistance\AttributeTypeFactory;
+use MetaModels\DcGeneral\Events\Table\Attribute\GeoDistance\Subscriber;
 use MetaModels\Events\MetaModelsBootEvent;
 use MetaModels\MetaModelsEvents;
 

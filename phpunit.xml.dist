@@ -25,7 +25,7 @@
 
 	<filter>
 		<whitelist>
-			<directory>./src/system/modules/metamodels_georange/MetaModels/</directory>
+			<directory>./src/system/modules/metamodels_geodistance/MetaModels/</directory>
 		</whitelist>
 	</filter>
 </phpunit>

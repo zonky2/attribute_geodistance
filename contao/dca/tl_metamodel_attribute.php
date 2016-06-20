@@ -9,7 +9,7 @@
  * PHP version 5
  *
  * @package    MetaModels
- * @subpackage AttributeGeorange
+ * @subpackage AttributeGeoDistance
  * @author     Stefan Heimes <stefan_heimes@hotmail.com>
  * @copyright  The MetaModels team.
  * @license    LGPL.
@@ -19,7 +19,7 @@
 /**
  * Table tl_metamodel_attribute
  */
-$GLOBALS['TL_DCA']['tl_metamodel_attribute']['metapalettes']['georange extends _simpleattribute_'] = array
+$GLOBALS['TL_DCA']['tl_metamodel_attribute']['metapalettes']['geodistance extends _simpleattribute_'] = array
 (
     '+parameter' => array('get_geo', 'get_land'),
     '+data' => array('datamode', 'lookupservice'),

@@ -9,7 +9,7 @@
  * PHP version 5
  *
  * @package    MetaModels
- * @subpackage AttributeGeorange
+ * @subpackage AttributeGeoDistance
  * @author     Stefan Heimes <stefan_heimes@hotmail.com>
  * @copyright  The MetaModels team.
  * @license    LGPL.
@@ -19,7 +19,7 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_metamodel_attribute']['typeOptions']['georange'] = 'Georange';
+$GLOBALS['TL_LANG']['tl_metamodel_attribute']['typeOptions']['geodistance'] = 'Geo Distance';
 
 $GLOBALS['TL_LANG']['tl_metamodel_attribute']['get_geo']        = array(
     'GET-Parameter for Geo',
