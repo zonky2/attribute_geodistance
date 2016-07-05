@@ -184,19 +184,30 @@ class GeoDistance extends BaseComplex
         (
             'SELECT
                 id,
-                round(sqrt(power(2 * pi() / 360 * (%1$s - %3$s) * 6371,
-                                        2) + power(2 * pi() / 360 * (%2$s - %4$s) * 6371 * COS(2 * pi() / 360 * (%1$s + %3$s) * 0.5),
-                                        2))) AS item_dist
+                round
+                (
+                  sqrt
+                  (
+                    power
+                    (
+                      2 * pi() / 360 * (%1$s -  CAST(%3$s AS DECIMAL(10,6))   ) * 6371,2) 
+                      + power(2 * pi() / 360 * (%2$s - CAST(%4$s AS DECIMAL(10,6))) 
+                      * 6371 * COS(2 * pi() / 360 * (%1$s + CAST(%3$s AS DECIMAL(10,6))) * 0.5),2
+                    )
+                  )
+                ) 
+                AS item_dist
             FROM
-                tl_metamodel_geolocation
+                %6$s
             WHERE
-                item_id IN(%5$s)
+                id IN(%5$s)
             ORDER BY item_dist',
             $lat,
             $lng,
             $latAttribute->getColName(),
             $longAttribute->getColName(),
-            implode(', ', $idList)
+            implode(', ', $idList),
+            $this->getMetaModel()->getTableName()
         );
 
         $objResult = \Database::getInstance()
@@ -205,7 +216,7 @@ class GeoDistance extends BaseComplex
 
         $newIdList = array();
         foreach ($objResult->fetchAllAssoc() as $item) {
-            $id              = $item['item_id'];
+            $id              = $item['id'];
             $distance        = $item['item_dist'];
             $newIdList[]     = $id;
             self::$data[$id] = $distance;
