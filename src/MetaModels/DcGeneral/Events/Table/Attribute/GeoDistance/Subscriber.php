@@ -108,7 +108,7 @@ class Subscriber extends BaseSubscriber
             ->getFilterFactory()
             ->getTypeFactory($model->getProperty('type'));
 
-        $typeFilter = null;
+        $typeFilter = array();
         if ($typeFactory) {
             $typeFilter = $typeFactory->getKnownAttributeTypes();
         }
