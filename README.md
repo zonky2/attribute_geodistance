@@ -1,8 +1,7 @@
-Geo Range
+Geo distance
 =========
 
-The attribute to display the range between two points. 
+The attribute to display the distance between two geolocation points.
 
-Need: 
-	attribute_geolocation
+Need:
 	filter_perimetersearch
