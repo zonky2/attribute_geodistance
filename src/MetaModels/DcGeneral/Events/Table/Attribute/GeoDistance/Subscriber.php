@@ -155,10 +155,8 @@ class Subscriber extends BaseSubscriber
             return;
         }
 
-        // ToDo: Add a subscriber class for this.
-        $arrClasses = (array)$GLOBALS['METAMODELS']['filters']['perimetersearch']['resolve_class'];
-
-        $arrReturn = array();
+        $arrClasses = (array) $GLOBALS['METAMODELS']['filters']['perimetersearch']['resolve_class'];
+        $arrReturn  = array();
         foreach (array_keys($arrClasses) as $name) {
             $arrReturn[$name] = (isset($GLOBALS['TL_LANG']['tl_metamodel_attribute']['perimetersearch'][$name]))
                 ? $GLOBALS['TL_LANG']['tl_metamodel_filtersetting']['perimetersearch'][$name]

@@ -84,7 +84,8 @@ class GeoDistance extends BaseComplex
             return $idList;
         }
 
-        try {// Get the geo data.
+        try {
+            // Get the geo data.
             $objContainer = $this->lookupGeo($geo, $land);
 
             // Okay we cant find a entry. So search for nothing.
@@ -106,8 +107,8 @@ class GeoDistance extends BaseComplex
                 $objSecondAttribute = $objMetaModel->getAttribute($this->get('second_attr_id'));
 
                 // Search for two simple attributes.
-                $idList = $this->doSearchForTwoSimpleAtt($objContainer, $idList, $objFirstAttribute,
-                    $objSecondAttribute);
+                $idList = $this
+                    ->doSearchForTwoSimpleAtt($objContainer, $idList, $objFirstAttribute, $objSecondAttribute);
             }
         } catch (\Exception $e) {
             // Should be never happened, just in case.
@@ -122,6 +123,8 @@ class GeoDistance extends BaseComplex
      *
      * @param Container $container The container with all information.
      *
+     * @param array     $idList    A list with ids.
+     *
      * @return array A list with all sorted id's.
      */
     protected function doSearchForAttGeolocation($container, $idList)
@@ -129,13 +132,13 @@ class GeoDistance extends BaseComplex
         // Get location.y
         $lat    = $container->getLatitude();
         $lng    = $container->getLongitude();
-        $subSQL = sprintf
-        (
+        $subSQL = sprintf(
             'SELECT
                 item_id,
-                round(sqrt(power(2 * pi() / 360 * (%1$s - latitude) * 6371,
-                                        2) + power(2 * pi() / 360 * (%2$s - longitude) * 6371 * COS(2 * pi() / 360 * (%1$s + latitude) * 0.5),
-                                        2))) AS item_dist
+                round(
+                  sqrt(power(2 * pi() / 360 * (%1$s - latitude) * 6371, 2) 
+                  + power(2 * pi() / 360 * (%2$s - longitude) * 6371 
+                  * COS(2 * pi() / 360 * (%1$s + latitude) * 0.5), 2))) AS item_dist
             FROM
                 tl_metamodel_geolocation
             WHERE
@@ -147,8 +150,8 @@ class GeoDistance extends BaseComplex
         );
 
         $objResult = \Database::getInstance()
-            ->prepare($subSQL)
-            ->execute($this->getMetaModel()->getAttribute($this->get('single_attr_id'))->get('id'));
+                              ->prepare($subSQL)
+                              ->execute($this->getMetaModel()->getAttribute($this->get('single_attr_id'))->get('id'));
 
         $newIdList = array();
         foreach ($objResult->fetchAllAssoc() as $item) {
@@ -182,8 +185,7 @@ class GeoDistance extends BaseComplex
         $lat     = $container->getLatitude();
         $lng     = $container->getLongitude();
         $intDist = $container->getDistance();
-        $subSQL  = sprintf
-        (
+        $subSQL  = sprintf(
             'SELECT
                 id,
                 round
@@ -213,8 +215,8 @@ class GeoDistance extends BaseComplex
         );
 
         $objResult = \Database::getInstance()
-            ->prepare($subSQL)
-            ->execute($intDist);
+                              ->prepare($subSQL)
+                              ->execute($intDist);
 
         $newIdList = array();
         foreach ($objResult->fetchAllAssoc() as $item) {
@@ -296,9 +298,7 @@ class GeoDistance extends BaseComplex
             return null;
         }
 
-        // ToDo: Try to make a subscriber from this.
-        $sClass = $GLOBALS['METAMODELS']['filters']['perimetersearch']['resolve_class'][$lookupClassName];
-
+        $sClass           = $GLOBALS['METAMODELS']['filters']['perimetersearch']['resolve_class'][$lookupClassName];
         $objCallbackClass = null;
         $oClass           = new \ReflectionClass($sClass);
 
@@ -394,7 +394,7 @@ class GeoDistance extends BaseComplex
      */
     public function setDataFor($arrValues)
     {
-        // TODO: Implement setDataFor() method.
+        // No-op.
     }
 
     /**
@@ -454,6 +454,6 @@ class GeoDistance extends BaseComplex
      */
     public function unsetDataFor($arrIds)
     {
-        // TODO: Implement unsetDataFor() method.
+        // No-op.
     }
 }
