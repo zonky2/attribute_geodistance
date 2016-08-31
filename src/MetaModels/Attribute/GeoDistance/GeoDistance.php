@@ -1,18 +1,20 @@
 <?php
 
 /**
- * The MetaModels extension allows the creation of multiple collections of custom items,
- * each with its own unique set of selectable attributes, with attribute extendability.
- * The Front-End modules allow you to build powerful listing and filtering of the
- * data in each collection.
+ * This file is part of MetaModels/attribute_alias.
  *
- * PHP version 5
+ * (c) 2012-2016 The MetaModels team.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * This project is provided in good faith and hope to be usable by anyone.
  *
  * @package    MetaModels
  * @subpackage AttributeGeoDistance
  * @author     Stefan Heimes <stefan_heimes@hotmail.com>
- * @copyright  The MetaModels team.
- * @license    LGPL.
+ * @copyright  2012-2016 The MetaModels team.
+ * @license    https://github.com/MetaModels/attribute_geodistance/blob/master/LICENSE LGPL-3.0
  * @filesource
  */
 
@@ -82,7 +84,8 @@ class GeoDistance extends BaseComplex
             return $idList;
         }
 
-        try {// Get the geo data.
+        try {
+            // Get the geo data.
             $objContainer = $this->lookupGeo($geo, $land);
 
             // Okay we cant find a entry. So search for nothing.
@@ -104,8 +107,8 @@ class GeoDistance extends BaseComplex
                 $objSecondAttribute = $objMetaModel->getAttribute($this->get('second_attr_id'));
 
                 // Search for two simple attributes.
-                $idList = $this->doSearchForTwoSimpleAtt($objContainer, $idList, $objFirstAttribute,
-                    $objSecondAttribute);
+                $idList = $this
+                    ->doSearchForTwoSimpleAtt($objContainer, $idList, $objFirstAttribute, $objSecondAttribute);
             }
         } catch (\Exception $e) {
             // Should be never happened, just in case.
@@ -120,6 +123,8 @@ class GeoDistance extends BaseComplex
      *
      * @param Container $container The container with all information.
      *
+     * @param array     $idList    A list with ids.
+     *
      * @return array A list with all sorted id's.
      */
     protected function doSearchForAttGeolocation($container, $idList)
@@ -127,13 +132,13 @@ class GeoDistance extends BaseComplex
         // Get location.y
         $lat    = $container->getLatitude();
         $lng    = $container->getLongitude();
-        $subSQL = sprintf
-        (
+        $subSQL = sprintf(
             'SELECT
                 item_id,
-                round(sqrt(power(2 * pi() / 360 * (%1$s - latitude) * 6371,
-                                        2) + power(2 * pi() / 360 * (%2$s - longitude) * 6371 * COS(2 * pi() / 360 * (%1$s + latitude) * 0.5),
-                                        2))) AS item_dist
+                round(
+                  sqrt(power(2 * pi() / 360 * (%1$s - latitude) * 6371, 2) 
+                  + power(2 * pi() / 360 * (%2$s - longitude) * 6371 
+                  * COS(2 * pi() / 360 * (%1$s + latitude) * 0.5), 2))) AS item_dist
             FROM
                 tl_metamodel_geolocation
             WHERE
@@ -145,8 +150,8 @@ class GeoDistance extends BaseComplex
         );
 
         $objResult = \Database::getInstance()
-            ->prepare($subSQL)
-            ->execute($this->getMetaModel()->getAttribute($this->get('single_attr_id'))->get('id'));
+                              ->prepare($subSQL)
+                              ->execute($this->getMetaModel()->getAttribute($this->get('single_attr_id'))->get('id'));
 
         $newIdList = array();
         foreach ($objResult->fetchAllAssoc() as $item) {
@@ -180,8 +185,7 @@ class GeoDistance extends BaseComplex
         $lat     = $container->getLatitude();
         $lng     = $container->getLongitude();
         $intDist = $container->getDistance();
-        $subSQL  = sprintf
-        (
+        $subSQL  = sprintf(
             'SELECT
                 id,
                 round
@@ -211,8 +215,8 @@ class GeoDistance extends BaseComplex
         );
 
         $objResult = \Database::getInstance()
-            ->prepare($subSQL)
-            ->execute($intDist);
+                              ->prepare($subSQL)
+                              ->execute($intDist);
 
         $newIdList = array();
         foreach ($objResult->fetchAllAssoc() as $item) {
@@ -294,9 +298,7 @@ class GeoDistance extends BaseComplex
             return null;
         }
 
-        // ToDo: Try to make a subscriber from this.
-        $sClass = $GLOBALS['METAMODELS']['filters']['perimetersearch']['resolve_class'][$lookupClassName];
-
+        $sClass           = $GLOBALS['METAMODELS']['filters']['perimetersearch']['resolve_class'][$lookupClassName];
         $objCallbackClass = null;
         $oClass           = new \ReflectionClass($sClass);
 
@@ -392,7 +394,7 @@ class GeoDistance extends BaseComplex
      */
     public function setDataFor($arrValues)
     {
-        // TODO: Implement setDataFor() method.
+        // No-op.
     }
 
     /**
@@ -452,6 +454,6 @@ class GeoDistance extends BaseComplex
      */
     public function unsetDataFor($arrIds)
     {
-        // TODO: Implement unsetDataFor() method.
+        // No-op.
     }
 }
